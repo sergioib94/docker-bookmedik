@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+
+ app:
+    container_name: bookmedik-php
+    image: sergioib94/bookmedik-php:v1
+    restart: always
+    ports:
+      - 8081:80
+    volumes:
+      - /home/sergio/Escritorio/Informatica/Github/docker-bookmedik/Tarea2/vol-app:/var/log/apache2
+ db:
+    container_name: servidor_mysql2
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_DATABASE: bookmedik
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: bookmedik_admin
+    volumes:
+      - /home/sergio/Escritorio/Informatica/Github/docker-bookmedik/Tarea2/vol-maria:/var/lib/mysql

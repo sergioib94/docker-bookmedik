@@ -1,0 +1,21 @@
+FROM php:7.4-apache
+
+ENV MARIADB_USER admin
+ENV MARIADB_PASS admin
+ENV MARIADB_HOST servidor_mysql2
+
+RUN apt-get update
+RUN docker-php-ext-install pdo pdo_mysql mysqli json
+RUN a2enmod rewrite
+
+EXPOSE 80
+
+WORKDIR /var/www/html
+
+COPY bookmedik/ /var/www/html
+
+ADD script.sh /usr/local/bin/script.sh
+
+RUN chmod +x /usr/local/bin/script.sh
+
+CMD ["script.sh"]
