@@ -1,0 +1,26 @@
+version: "3.1"
+
+services:
+  db:
+    container_name: servidor_mysql_drupal
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_DATABASE: drupal
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: drupal_admin
+    volumes:
+      - /home/sergio/Escritorio/Informatica/Github/docker-bookmedik/Tarea4/vol-maria:/var/lib/mysql
+
+  drupal:
+    container_name: drupal
+    image: sergioib94/drupal:v1
+    restart: always
+    ports:
+      - 8083:80
+    volumes:
+      - /home/sergio/Escritorio/Informatica/Github/docker-bookmedik/Tarea4/vol-app:/var/log/apache2
+
+    
+
